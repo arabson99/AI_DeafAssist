@@ -1,0 +1,6 @@
+# Exclude large image files
+static/images/large_files/
+
+# Exclude temporary files
+*.log
+*.tmp
