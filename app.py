@@ -13,7 +13,6 @@ class_images = {
     "C": cv2.imread("static/images/C.jpg"),
     # Add more alphabet images as needed
 }
-
 labels = ["A", "B", "C"]
 alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
