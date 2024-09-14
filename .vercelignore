@@ -1,9 +1,5 @@
 .git
-.env
-node_modules
-*.md
-static/
-*.jpg
-*.png
-__pycache__/
+__pycache__
 *.pyc
+venv/
+node_modules/
