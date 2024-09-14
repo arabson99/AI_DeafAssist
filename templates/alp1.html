@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeafAssist</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>   
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Welcome to DeafAssist</h1>
+        </header>
+
+        <div class="intro-text">
+            <p>Choose a category below to get started!</p>
+        </div>
+
+        <!-- Display the result and the output image -->
+        <div id="result"></div>
+        <img id="outputImage" alt="Output Image">
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            function captureAndProcessFrame() {
+                // Send a request to capture and process the frame
+                $.ajax({
+                    type: "POST",
+                    url: "/process_frame",
+                    data: { capture_and_process: true },
+                    success: function (response) {
+                        console.log("Received Response:", response);
+
+                        // Check if output_img_base64 is defined
+                        if (response.output_img_base64 !== undefined) {
+                            // Update the result and output image only if the prediction changes
+                            if (response.result !== $("#result").text().replace("Result: ", "")) {
+                                $("#result").text("Result: " + response.result);
+                                $("#outputImage").attr("src", "data:image/jpeg;base64," + response.output_img_base64);
+                            }
+                        } else {
+                            console.error("Error: output_img_base64 is undefined in the server response.");
+                        }
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                    }
+                });
+            }
+
+            // Attach click event to the capture button
+            $("#captureButton").on("click", captureAndProcessFrame);
+
+            // Initial call to capture and process frame
+            captureAndProcessFrame();
+
+            // Continue processing frames every 1000 milliseconds (adjust as needed)
+            setInterval(captureAndProcessFrame, 1000);
+        });
+    </script>
+</body>
+</html>

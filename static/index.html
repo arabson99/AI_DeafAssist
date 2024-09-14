@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Assistance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Welcome to Education Assistance</h1>
+        </header>
+
+        <div class="description">
+            <p>This page provides educational resources to assist in learning alphabets, numbers, colors, and sign symbols.</p>
+        </div>
+
+        <div class="intro-text">
+            <p>Choose a category below to get started!</p>
+        </div>
+
+        <div class="container">
+            <div class="tile alphabet" >
+                <a href="https://google.com/">Alphabet Learning</a>
+            </div>
+            <div class="tile numbers">
+                <a href="#numbers">Numbers</a>
+            </div>
+            <div class="tile colors">
+                <a href="#colors">Colors</a>
+            </div>
+            <div class="tile symbols">
+                <a href="#symbols">Sign Symbols</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="voiceCommands.js"></script>
+    <script>
+        // Check for browser support
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const recognition = new (window.webkitSpeechRecognition || window.SpeechRecognition)();
+
+            recognition.onresult = (event) => {
+                const command = event.results[0][0].transcript.toLowerCase();
+                console.log('Command recognized:', command);
+
+                // Check if the command exists in the voiceCommands object
+                if (voiceCommands.hasOwnProperty(command)) {
+                    voiceCommands[command]();
+                }
+            };
+
+            recognition.onend = () => {
+                recognition.start(); // Restart recognition after it ends
+            };
+
+            recognition.start(); // Start recognition
+        } else {
+            console.error('Speech recognition not supported in this browser.');
+        }
+    </script>
+
+</body>
+</html>

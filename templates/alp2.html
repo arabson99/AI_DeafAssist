@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeafAssist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Welcome to DeafAssist</h1>
+        </header>
+
+        <div class="intro-text">
+            <p>Alphabets</p>
+        </div>
+
+        <!-- Display the result and the output image -->
+        <div id="result"></div>
+        <img id="outputImage" alt="Output Image">
+    </div>
+
+    <button id="speechButton">Start Speech Input</button>
+
+    <script>
+        $(document).ready(function () {
+            const resultElement = $('#result');
+            const outputImageElement = $('#outputImage');
+
+            // Event listener for the speech button
+            $('#speechButton').on('click', function () {
+                startSpeechRecognition();
+            });
+
+            function startSpeechRecognition() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/process_voice',
+                    success: function (data) {
+                        // Check if the result is not empty before updating
+                        if (data.result !== '') {
+                            resultElement.text(data.result);
+                        }
+                    
+                        // Check if the output_img_base64 is not empty before updating
+                        if (data.output_img_base64 !== '') {
+                            outputImageElement.attr('src', 'data:image/png;base64,' + data.output_img_base64);
+                        }
+                    },
+                    error: function () {
+                        console.error('Error in speech recognition request.');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

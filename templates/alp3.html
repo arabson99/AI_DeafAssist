@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Assistance</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Welcome to Education Assistance</h1>
+        </header>
+
+        <div class="intro-text">
+            <p>Choose a category below to get started!</p>
+        </div>
+
+        <!-- Display the result and the output image -->
+        <div id="result"></div>
+
+     <!-- Updated video_feed element -->
+    <div id="video_feed-container">
+        <img id="video_feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+    </div>
+</body>
+</html>

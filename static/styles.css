@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.page-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.description {
+    text-align: center;
+    margin: 20px;
+}
+
+.description p {
+    font-size: 18px;
+    color: #555;
+}
+
+.intro-text {
+    text-align: center;
+    margin: 20px;
+}
+
+.intro-text p {
+    font-size: 35px; /* Enlarged font size */
+    font-weight: bold; /* Added bold style */
+    color: #333;
+    background-color: #e6e6e6;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    align-self: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.tile {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 70px;
+    align-self: center;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.tile:hover {
+    transform: scale(1.05);
+}
+
+.alphabet { background-color: #3498db; }
+.numbers { background-color: #e74c3c; }
+.colors { background-color: #2ecc71; }
+.symbols { background-color: #f39c12; }
+
+.tile a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    font-size: 35px;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+#outputImage {
+    margin-top: 20px;
+    max-width: 100%;
+    border: 1px solid #ccc;
+}
+
+/* Add this CSS code to your existing styles.css file or create a new one */
+
+/* Button styling */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #3498db;
+    color: #3498db;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect */
+.button:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Add styling for the output image */
+#outputImage {
+    display: block;
+    margin: 20px auto; /* Adjust margins as needed */
+}
+
+/* Style the video feed to match the container size */
+#video_feed {
+    display: block;
+    width: 100%; /* Make the width 100% of the container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow */
+}
+
+/* If you want to hide the overflow and make the image fully responsive */
+#video_feed-container {
+    overflow: hidden;
+    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow */
+}
+
+/* Hide the video element */
+video {
+    display: none;
+}

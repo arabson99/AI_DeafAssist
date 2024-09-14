@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Assistance</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".button").click(function () {
+                captureAndSendImage();
+            });
+
+            function captureAndSendImage() {
+                // Access the user's camera
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function (stream) {
+                        // Capture an image from the webcam using a video element
+                        var video = document.createElement('video');
+                        document.body.appendChild(video);
+                        video.srcObject = stream;
+                        video.play();
+
+                        setTimeout(function () {
+                            var canvas = document.createElement('canvas');
+                            canvas.width = video.videoWidth;
+                            canvas.height = video.videoHeight;
+                            var context = canvas.getContext('2d');
+                            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                            // Convert the image to base64
+                            var imgData = canvas.toDataURL('image/jpeg');
+
+                            // Send the image data to the server
+                            $.ajax({
+                                type: "POST",
+                                url: "/process_image",  // Update with your server endpoint
+                                data: { image_data: imgData },
+                                success: function (response) {
+                                    // Display the result on the page
+                                    $("#result").text("Result: " + response.result);
+
+                                    // Display the output image on the page
+                                    $("#outputImage").attr("src", "data:image/jpeg;base64," + response.output_img_base64);
+
+                                    // Stop the camera stream
+                                    stream.getTracks().forEach(track => track.stop());
+                                },
+                                error: function (error) {
+                                    console.log("Error:", error);
+                                    // Stop the camera stream in case of an error
+                                    stream.getTracks().forEach(track => track.stop());
+                                }
+                            });
+                        }, 1000); // Adjust the delay as needed
+                    })
+                    .catch(function (error) {
+                        console.error("Error accessing camera:", error);
+                    });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Welcome to Education Assistance</h1>
+        </header>
+
+        <div class="intro-text">
+            <p>Choose a category below to get started!</p>
+        </div>
+
+        <div class="container">
+            <button class="button">Start Image Processing</button>
+        </div>
+
+        <!-- Display the result and the output image -->
+        <div id="result"></div>
+        <img id="outputImage" alt="Output Image">
+
+    </div>
+</body>
+</html>

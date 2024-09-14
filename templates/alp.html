@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Assistance</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Welcome to DeafAssist</h1>
+        </header>
+
+        <div class="intro-text">
+            <p>Alphabets</p>
+        </div>
+
+        <!-- Display the result and the output image -->
+        <div id="result">
+            <p>Result: <span id="outputMessage"></span></p>
+        </div>
+        <img id="outputImage" alt="Output Image" style="width: 640px; height: 480px;">
+        <img id="outputImage1" alt="Output Image1" src="static/images/A.jpg" style="width: 640px; height: 480px;">
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+    
+            const resultElement = $('#result');
+            const outputImageElement = $('#outputImage');
+            let prevResult = ""; // Variable to store the previous prediction
+    
+            function processFrame() {
+                // Send a request to process the frame
+                $.ajax({
+                    type: "POST",
+                    url: "/process_frame",
+                    data: {},
+                    success: function (response) {
+                        console.log("Received Response:", response);
+    
+                        // Check if response has 'error' field
+                        if (response.error !== undefined) {
+                            console.error("Error from server:", response.error);
+                            return;
+                        }
+    
+                        // Check if output_img_base64 and result are defined
+                        if (response.output_img !== undefined && response.result !== undefined) {
+                            // Update the result and output image only if the prediction changes
+                            if (response.result !== prevResult) {
+                                prevResult = response.result; // Update the previous prediction
+                                resultElement.find("#outputMessage").text(response.result);
+                                outputImageElement.attr("src", "data:image/jpeg;base64," + response.output_img);
+                            }
+                        } else {
+                            console.error("Error: output_img or result is undefined in the server response.");
+                        }
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                    }
+                });
+            }
+    
+            // Initial call to capture and process frame
+            processFrame();
+    
+            // Continue processing frames every 5000 milliseconds (adjust as needed)
+            setInterval(processFrame, 2000);
+        });
+    </script>
+    
+</body>
+</html>
