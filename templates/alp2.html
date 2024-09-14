@@ -4,57 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeafAssist</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="page-container">
-        <header>
-            <h1>Welcome to DeafAssist</h1>
-        </header>
-
-        <div class="intro-text">
-            <p>Alphabets</p>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#video">Video</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="intro">
+        <img src="static/images/cover.jpg" alt="Cover Image" class="cover-image">
+        <h1>DeafAssist</h1>
+        <p>Your assistive technology for seamless communication.</p>
+        <a href="http://your-deployed-app-link.com" class="button">Visit Application</a>
+    </section>
+    
+    <section id="features">
+        <h2>Key Features</h2>
+        <div class="feature">
+            <img src="static/images/feature1.jpg" alt="Feature 1">
+            <h3>Feature 1</h3>
+            <p>Description of Feature 1.</p>
         </div>
+        <div class="feature">
+            <img src="static/images/feature2.jpg" alt="Feature 2">
+            <h3>Feature 2</h3>
+            <p>Description of Feature 2.</p>
+        </div>
+        <div class="feature">
+            <img src="static/images/feature3.jpg" alt="Feature 3">
+            <h3>Feature 3</h3>
+            <p>Description of Feature 3.</p>
+        </div>
+    </section>
 
-        <!-- Display the result and the output image -->
-        <div id="result"></div>
-        <img id="outputImage" alt="Output Image">
-    </div>
+    <section id="about">
+        <h2>About</h2>
+        <p>This project was inspired by the need for accessible communication tools for those with hearing impairments. It is a portfolio project for Holberton School, aimed at enhancing assistive technologies.</p>
+        <p><a href="https://github.com/your-repo" target="_blank">GitHub Repository</a></p>
+    </section>
 
-    <button id="speechButton">Start Speech Input</button>
-
-    <script>
-        $(document).ready(function () {
-            const resultElement = $('#result');
-            const outputImageElement = $('#outputImage');
-
-            // Event listener for the speech button
-            $('#speechButton').on('click', function () {
-                startSpeechRecognition();
-            });
-
-            function startSpeechRecognition() {
-                $.ajax({
-                    type: 'POST',
-                    url: '/process_voice',
-                    success: function (data) {
-                        // Check if the result is not empty before updating
-                        if (data.result !== '') {
-                            resultElement.text(data.result);
-                        }
-                    
-                        // Check if the output_img_base64 is not empty before updating
-                        if (data.output_img_base64 !== '') {
-                            outputImageElement.attr('src', 'data:image/png;base64,' + data.output_img_base64);
-                        }
-                    },
-                    error: function () {
-                        console.error('Error in speech recognition request.');
-                    }
-                });
-            }
-        });
-    </script>
+    <section id="video">
+        <h2>Introduction Video</h2>
+        <video controls>
+            <source src="static/videos/introduction.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
 </body>
 </html>
