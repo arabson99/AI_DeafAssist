@@ -1,9 +1,9 @@
+#!/usr/bin/python3
 from flask import Flask, render_template, request, jsonify
 import cv2
 from cvzone.HandTrackingModule import HandDetector
 import numpy as np
 import math
-import pyttsx3
 import base64
 import tensorflow as tf
 
@@ -61,13 +61,6 @@ labels = [
 # Initialize initial height and width with default values
 initial_height, initial_width = 480, 640
 
-# Initialize the text-to-speech engine once outside the function
-engine = pyttsx3.init()
-
-# Function to perform text-to-speech
-def speak_output(output_text):
-    engine.say(output_text)
-    engine.runAndWait()
 
 @app.route('/')
 def index():
