@@ -1,26 +1,29 @@
 # AI Deaf Assist
 
-## Overview
-AI Deaf Assist is a machine learning-based web application designed to aid individuals with hearing impairments by translating sign language into text. The application leverages real-time video processing to recognize hand signs, enhancing communication for users who are deaf or hard of hearing.
+## Introduction
+AI Deaf Assist is a machine learning web application designed to aid individuals with hearing impairments by translating sign language into text. The application uses real-time video processing to recognize hand signs, facilitating better communication for users who are deaf or hard of hearing.
 
-## Key Features
-- **Interactive Alphabet Selection**: Users can select letters to initiate hand sign recognition.
-- **Real-time Hand Sign Recognition**: Utilizes a camera to capture and interpret sign language gestures.
-- **Machine Learning Integration**: Employs advanced algorithms to accurately translate hand signs into text.
+**Deployed Site:** [AI Deaf Assist Live Demo](https://aideafassist.arabson99.tech)  
+![Screenshot of AI Deaf Assist](https://github.com/arabson99/AI_DeafAssist/blob/main/assets/app1.png)
+![Screenshot of AI Deaf Assist](https://github.com/arabson99/AI_DeafAssist/blob/main/assets/app2.png)
 
-## How It Works
-1. **User Interaction**: Users click on the alphabet to start the sign recognition process.
-2. **Camera Activation**: The application activates the device's camera to capture hand signs.
-3. **Gesture Recognition**: Hand signs are processed and translated into text using machine learning models.
+## Installation
+The application is hosted online, so no installation is required. Simply visit the deployed site to start using it.
 
-## Access the Application
-You can access the AI Deaf Assist application at the following URL:
-[AI Deaf Assist Live Demo](https://aideafassist.arabson99.tech)
+## Usage
+1. Navigate to the [AI Deaf Assist Live Demo](https://aideafassist.arabson99.tech).
+2. Select an alphabet to begin the hand sign recognition.
+3. Allow the application to access your camera.
+4. Demonstrate the sign, and the application will translate it into text.
 
-## Contribution
-Contributions are encouraged! Please fork the repository and submit a pull request for any improvements or features you wish to add.
+## Contributing
+Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request with your improvements or new features.
 
+## Related Projects
+- **Sign Language Translator**: A similar project aimed at sign language translation.
+- **Gesture Recognition System**: A comprehensive gesture recognition app using machine learning.
 
-## Author
-- [Abubakar Abdulazeez Usman](https://github.com/arabson99)
+## Licensing
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
 
